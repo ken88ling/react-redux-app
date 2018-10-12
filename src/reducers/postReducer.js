@@ -6,9 +6,10 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
+  console.log("post reducer");
+
   switch (action.type) {
     case FETCH_POSTS:
-      console.log("post reducer");
       return {
         ...state,
         items: action.payload

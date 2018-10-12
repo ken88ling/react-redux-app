@@ -9,6 +9,8 @@ import store from "./store";
 
 class App extends Component {
   render() {
+    console.log("App render");
+
     return (
       <Provider store={store}>
         <div className="App">
