@@ -8,6 +8,11 @@ class Posts extends Component {
     this.props.fetchPosts();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.newPost) {
+      this.props.posts.unshift(nextProps.newPost);
+    }
+  }
   render() {
     console.log("fetching");
     const postItems = this.props.posts.map(post => (
@@ -22,12 +27,14 @@ class Posts extends Component {
 
 Posts.propTypes = {
   fetchPosts: PropTypes.func.isRequired,
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
+  newPost: PropTypes.object
 };
 
 // this posts is from combineReducers's posts
 const mapStateToProps = state => ({
-  posts: state.posts.items
+  posts: state.posts.items,
+  newPost: state.posts.item
 });
 export default connect(
   mapStateToProps,
